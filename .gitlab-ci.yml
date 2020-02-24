@@ -1,0 +1,53 @@
+image: registry.anansi.xyz/anansi/javascript-ci-image:latest
+
+stages:
+  - prepare
+  - static analysis
+  - test
+
+cache:
+  paths:
+    - ./node_modules
+  key: ${CI_JOB_NAME}
+
+install dependencies:
+  stage: prepare
+  script: npm install
+  artifacts:
+    paths:
+      - ./node_modules
+    expire_in: 1h
+
+check dependencies:
+  stage: static analysis
+  script: ./ci/check-dependencies.sh
+  artifacts:
+    paths:
+      - build/badges/*.svg
+    when: always
+
+check duplicate code:
+  stage: static analysis
+  script: ./ci/check-duplicate-code.sh
+
+lint javascript code:
+  stage: static analysis
+  script: npm run lint-javascript
+
+lint shell code:
+  stage: static analysis
+  script: npm run lint-shell
+
+unit tests:
+  stage: test
+  script: ./ci/test.sh
+  allow_failure: true
+
+coverage:
+  stage: test
+  script: ./ci/coverage.sh
+  allow_failure: true
+  artifacts:
+    paths:
+      - ./build/badges/*.svg
+    when: always
