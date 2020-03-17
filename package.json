@@ -16,16 +16,16 @@
   "author": "Alex Gustafsson",
   "license": "ISC",
   "devDependencies": {
-    "ava": "^3.2.0",
-    "husky": "^4.2.1",
+    "ava": "^3.5.0",
+    "husky": "^4.2.3",
     "jsinspect": "^0.12.7",
     "nyc": "^15.0.0",
-    "xo": "^0.25.3"
+    "xo": "^0.28.0"
   },
   "dependencies": {
     "chart.js": "^2.9.3",
-    "chartjs-node-canvas": "^3.0.3",
-    "commander": "^4.1.1",
+    "chartjs-node-canvas": "^3.0.6",
+    "commander": "^5.0.0",
     "debug": "^4.1.1",
     "gitlab": "^14.2.2"
   },
